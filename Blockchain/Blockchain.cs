@@ -10,7 +10,7 @@
         public Blockchain()
         {
             InitializeChain();
-            Chain.Add(CreateGenesisBlock());
+            AddGenesisBlock();
         }
 
         public void InitializeChain()
@@ -23,6 +23,10 @@
             block.Mine(Difficulty);
             PendingTransactions = new List<Transaction>();
             return block;
+        }
+        public void AddGenesisBlock()
+        {
+            Chain.Add(CreateGenesisBlock());
         }
         public void AddBlock(Block block)
         {
