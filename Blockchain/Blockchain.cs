@@ -10,23 +10,19 @@
         public Blockchain()
         {
             InitializeChain();
-            AddGenesisBlock();
+            CreateGenesisBlock();
         }
 
         public void InitializeChain()
         {
             Chain = new List<Block>();
         }
-        public Block CreateGenesisBlock()
+        public void CreateGenesisBlock()
         {
             Block block = new Block(DateTime.Now, null, PendingTransactions);
             block.Mine(Difficulty);
             PendingTransactions = new List<Transaction>();
-            return block;
-        }
-        public void AddGenesisBlock()
-        {
-            Chain.Add(CreateGenesisBlock());
+            Chain.Add(block);
         }
         public void AddBlock(Block block)
         {
@@ -56,7 +52,6 @@
             }
             return true;
         }
-
         public int GetBalance(string address)
         {
             int balance = 0;
@@ -74,7 +69,6 @@
                         balance += transaction.Amount;
                     }
                 }
-
             }
             return balance;
         }
