@@ -70,11 +70,11 @@
                 for (int j = 0; j < Chain[i].Transactions.Count; j++)
                 {
                     var transaction = Chain[i].Transactions[j];
-                    if (transaction.FromAddress == address)
+                    if (transaction.From == address)
                     {
                         balance -= transaction.Amount;
                     }
-                    if (transaction.ToAddress == address)
+                    if (transaction.To == address)
                     {
                         balance += transaction.Amount;
                     }

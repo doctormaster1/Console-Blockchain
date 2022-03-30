@@ -2,13 +2,13 @@
 {
     public class Transaction
     {
-        public string FromAddress { get; set; }
-        public string ToAddress { get; set; }
+        public string From { get; set; }
+        public string To { get; set; }
         public int Amount { get; set; }
-        public Transaction(string fromAddress, string toAddress, int amount)
+        public Transaction(string from, string to, int amount)
         {
-            FromAddress = fromAddress;
-            ToAddress = toAddress;
+            From = from;
+            To = to;
             Amount = amount;
         }
     }
