@@ -14,9 +14,9 @@ watch.Stop();
 
 //Yazdırma
 Console.WriteLine($"Runtime: {watch.ElapsedMilliseconds} ms\n");
-Console.WriteLine("Ahmet balance: " + ourblockchain.GetBalance("Ahmet").ToString());
-Console.WriteLine("Esad balance: " + ourblockchain.GetBalance("Esad").ToString());
-Console.WriteLine("Barut balance: " + ourblockchain.GetBalance("Barut").ToString());
-Console.WriteLine("AEB balance: " + ourblockchain.GetBalance("AEB").ToString());
+Console.WriteLine("Ahmet balance: " + ourblockchain.GetBalance("Ahmet").ToString() + " VRB");
+Console.WriteLine("Esad balance: " + ourblockchain.GetBalance("Esad").ToString() + " VRB");
+Console.WriteLine("Barut balance: " + ourblockchain.GetBalance("Barut").ToString() + " VRB");
+Console.WriteLine("AEB balance: " + ourblockchain.GetBalance("AEB").ToString() + " VRB");
 Console.WriteLine("\n" + JsonConvert.SerializeObject(ourblockchain,Formatting.Indented));
 Console.ReadKey();
