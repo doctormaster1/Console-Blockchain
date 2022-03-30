@@ -10,7 +10,7 @@
         public Blockchain()
         {
             InitializeChain();
-            AddGenesisBlock();
+            Chain.Add(CreateGenesisBlock());
         }
 
         public void InitializeChain()
@@ -24,19 +24,10 @@
             PendingTransactions = new List<Transaction>();
             return block;
         }
-        public void AddGenesisBlock()
-        {
-            Chain.Add(CreateGenesisBlock());
-        }
-        public Block GetLatestBlock()
-        {
-            return Chain[Chain.Count - 1];
-        }
         public void AddBlock(Block block)
         {
-            Block latestblock = GetLatestBlock();
-            block.Index = latestblock.Index + 1;
-            block.PreviousHash = latestblock.Hash;
+            block.Index = Chain[Chain.Count - 1].Index + 1;
+            block.PreviousHash = Chain[Chain.Count - 1].Hash;
             block.Hash = block.HashCalculate();
             block.Mine(this.Difficulty);
             Chain.Add(block);
@@ -48,7 +39,7 @@
         public void ProcessTransactions(string minerAddress)
         {
             CreateTransaction(new Transaction("Miner", minerAddress, Reward));
-            AddBlock(new Block(DateTime.Now, GetLatestBlock().Hash, PendingTransactions));
+            AddBlock(new Block(DateTime.Now, Chain[Chain.Count - 1].Hash, PendingTransactions));
             PendingTransactions = new List<Transaction>();
         }
         public bool IsValid()
