@@ -5,7 +5,7 @@
         IList<Transaction> PendingTransactions = new List<Transaction>();
         public IList<Block> Chain { get; set; }
         public int Difficulty { get; set; } = 1;
-        public int Reward { get; set; } = 1;
+        public decimal Reward { get; set; } = 0.00000001m;
 
         public Blockchain()
         {
@@ -38,7 +38,7 @@
         }
         public void ProcessTransactions(string minerAddress)
         {
-            CreateTransaction(new Transaction("Miner", minerAddress, Reward));
+            CreateTransaction(new Transaction("Miner", minerAddress, RewardCalculate()));
             AddBlock(new Block(DateTime.Now, Chain[Chain.Count - 1].Hash, PendingTransactions));
             PendingTransactions = new List<Transaction>();
         }
@@ -52,9 +52,9 @@
             }
             return true;
         }
-        public int GetBalance(string address)
+        public decimal GetBalance(string address)
         {
-            int balance = 0;
+            decimal balance = 0;
             for (int i = 0; i < Chain.Count; i++)
             {
                 for (int j = 0; j < Chain[i].Transactions.Count; j++)
@@ -71,6 +71,10 @@
                 }
             }
             return balance;
+        }
+        public decimal RewardCalculate()
+        {
+            return this.Difficulty * this.Reward;
         }
     }
 }

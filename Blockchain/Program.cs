@@ -6,9 +6,9 @@ Blockchain ourblockchain = new Blockchain();
 
 //İşlemler
 var watch = Stopwatch.StartNew();
-ourblockchain.CreateTransaction(new Transaction("Ahmet", "Esad", 15));
+ourblockchain.CreateTransaction(new Transaction("Ahmet", "Esad", 0.00000015m));
 ourblockchain.ProcessTransactions("AEB");
-ourblockchain.CreateTransaction(new Transaction("Esad", "Barut", 10));
+ourblockchain.CreateTransaction(new Transaction("Esad", "Barut", 0.00000010m));
 ourblockchain.ProcessTransactions("AEB");
 watch.Stop();
 
